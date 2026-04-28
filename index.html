@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Emmanuel Rodríguez Ortiz · Portafolio Docente</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --navy: #0f2540; --navy2: #1a3a5c; --teal: #1d6f5a; --teal-light: #e4f2ee;
+    --amber: #c27b2a; --amber-light: #fdf3e7; --bg: #f6f4f0; --bg2: #eeebe5;
+    --card: #ffffff; --text: #1a1a1a; --muted: #5c5c5c; --border: #d4cfc8;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --mono: 'DM Mono', monospace;
+    --sans: 'Outfit', sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--sans); background: var(--bg); color: var(--text); font-size: 15px; line-height: 1.6; }
+
+  nav { position: sticky; top: 0; z-index: 100; background: var(--navy); display: flex; align-items: center; justify-content: space-between; padding: .9rem 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+  .nav-logo { font-family: var(--mono); font-size: 12px; color: rgba(255,255,255,.6); letter-spacing: 2.5px; }
+  .nav-links { display: flex; gap: 1.4rem; list-style: none; flex-wrap: wrap; }
+  .nav-links a { font-family: var(--mono); font-size: 11px; color: rgba(255,255,255,.55); text-decoration: none; letter-spacing: 1.5px; transition: color .2s; }
+  .nav-links a:hover { color: #fff; }
+
+  .hero-wrap { background: var(--navy); }
+  .hero { max-width: 1000px; margin: 0 auto; padding: 3rem 2.5rem 2.5rem; display: grid; grid-template-columns: auto 1fr; gap: 2.5rem; align-items: center; }
+  .avatar { width: 100px; height: 100px; border-radius: 50%; background: linear-gradient(135deg, var(--teal), #0f4a3a); display: flex; align-items: center; justify-content: center; font-family: var(--serif); font-size: 2rem; color: rgba(255,255,255,.9); border: 2px solid rgba(255,255,255,.12); flex-shrink: 0; }
+  .hero-sup { font-family: var(--mono); font-size: 10px; letter-spacing: 3px; color: rgba(255,255,255,.4); margin-bottom: .5rem; }
+  .hero-name { font-family: var(--serif); font-size: 2.4rem; color: #fff; line-height: 1.1; margin-bottom: .5rem; }
+  .hero-name em { font-style: italic; color: rgba(255,255,255,.7); font-size: 1.7rem; }
+  .hero-desc { font-size: 13px; color: rgba(255,255,255,.6); max-width: 480px; line-height: 1.7; margin-bottom: .85rem; }
+  .hero-badges { display: flex; gap: .4rem; flex-wrap: wrap; margin-bottom: 1.25rem; }
+  .badge { font-family: var(--mono); font-size: 10px; letter-spacing: 1px; padding: .3rem .75rem; border-radius: 20px; border: 1px solid rgba(255,255,255,.15); color: rgba(255,255,255,.6); }
+  .badge.active { background: rgba(45,180,120,.15); border-color: rgba(45,180,120,.35); color: #5dd4a0; }
+
+  .hero-contact { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; border-top: 1px solid rgba(255,255,255,.1); padding-top: 1rem; }
+  .hc-label { font-family: var(--mono); font-size: 9px; letter-spacing: 2px; color: rgba(255,255,255,.3); margin-bottom: .2rem; }
+  .hc-email { font-family: var(--mono); font-size: 12px; color: rgba(255,255,255,.65); }
+  .hc-phone { font-family: var(--mono); font-size: 12px; color: rgba(255,255,255,.45); margin-top: .1rem; }
+  .hero-contact-btns { display: flex; gap: .5rem; flex-wrap: wrap; }
+  .cbtn { font-family: var(--mono); font-size: 11px; letter-spacing: 1px; border: 1px solid rgba(255,255,255,.2); border-radius: 6px; padding: .4rem .9rem; color: rgba(255,255,255,.65); background: transparent; cursor: pointer; transition: all .2s; text-decoration: none; display: inline-block; }
+  .cbtn:hover { background: rgba(255,255,255,.08); color: #fff; border-color: rgba(255,255,255,.35); }
+
+  .page { max-width: 1000px; margin: 0 auto; padding: 0 2.5rem 4rem; }
+
+  /* TOP-LEVEL COLLAPSIBLE */
+  .collapsible { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-top: 1.5rem; }
+  .collapsible > summary { display: flex; align-items: center; justify-content: space-between; padding: 1rem 1.4rem; cursor: pointer; list-style: none; background: var(--card); user-select: none; font-family: var(--mono); font-size: 10px; letter-spacing: 3px; color: var(--muted); text-transform: uppercase; transition: background .15s; }
+  .collapsible > summary:hover { background: var(--bg2); }
+  .collapsible > summary::-webkit-details-marker { display: none; }
+  .collapsible > summary .arrow { font-size: 14px; transition: transform .25s; color: var(--teal); line-height: 1; }
+  .collapsible[open] > summary .arrow { transform: rotate(90deg); }
+  .collapsible-body { padding: 1.25rem 1.4rem 1.5rem; border-top: 1px solid var(--border); background: var(--bg); }
+
+  /* SUB-LEVEL COLLAPSIBLE */
+  .sub-collapsible { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: .6rem; }
+  .sub-collapsible > summary { display: flex; align-items: center; justify-content: space-between; padding: .75rem 1rem; cursor: pointer; list-style: none; background: var(--card); user-select: none; font-family: var(--mono); font-size: 11px; letter-spacing: 1.5px; color: var(--navy2); font-weight: 500; transition: background .15s; }
+  .sub-collapsible > summary:hover { background: var(--bg2); }
+  .sub-collapsible > summary::-webkit-details-marker { display: none; }
+  .sub-collapsible > summary .arrow { font-size: 12px; transition: transform .25s; color: var(--teal); }
+  .sub-collapsible[open] > summary .arrow { transform: rotate(90deg); }
+  .sub-body { padding: 1rem; border-top: 1px solid var(--border); background: var(--bg); }
+
+  .period-block { margin-bottom: 1rem; }
+  .period-label { font-family: var(--mono); font-size: 10px; color: var(--muted); letter-spacing: 1px; margin-bottom: .5rem; }
+  .period-note { margin-top: .45rem; padding: .45rem .75rem; background: var(--bg2); border-radius: 6px; font-size: 11px; color: var(--muted); font-family: var(--mono); }
+
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.4rem 1.6rem; }
+  .card h3 { font-family: var(--mono); font-size: 10px; letter-spacing: 2px; color: var(--teal); margin-bottom: .75rem; text-transform: uppercase; }
+  .card p { font-size: 14px; color: var(--muted); line-height: 1.7; }
+  .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; }
+  .stat { background: var(--bg2); border-radius: 8px; padding: 1rem; text-align: center; }
+  .stat-n { font-family: var(--serif); font-size: 2rem; color: var(--navy2); line-height: 1; }
+  .stat-l { font-family: var(--mono); font-size: 10px; color: var(--muted); margin-top: .35rem; }
+  .skills-grid { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .6rem; }
+  .skill-tag { font-family: var(--mono); font-size: 10px; padding: .25rem .6rem; border-radius: 4px; background: var(--bg2); color: var(--muted); border: 1px solid var(--border); }
+  .skill-tag.hl { background: var(--teal-light); color: var(--teal); border-color: #a8d5c8; }
+
+  .edu-list { display: flex; flex-direction: column; gap: .75rem; }
+  .edu-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1.1rem 1.4rem; display: grid; grid-template-columns: 1fr auto; gap: 1rem; align-items: start; }
+  .edu-title { font-size: 14px; font-weight: 500; color: var(--text); }
+  .edu-sub { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .edu-badge { font-family: var(--mono); font-size: 9px; padding: .2rem .55rem; border-radius: 20px; white-space: nowrap; margin-top: 2px; }
+  .edu-badge.lic { background: var(--amber-light); color: var(--amber); border: 1px solid #e8c88a; }
+  .edu-badge.msc { background: var(--teal-light); color: var(--teal); border: 1px solid #a8d5c8; }
+  .edu-links { display: flex; gap: .4rem; flex-wrap: wrap; margin-top: .5rem; }
+  .edu-link { font-family: var(--mono); font-size: 10px; color: var(--teal); text-decoration: none; background: var(--teal-light); border: 1px solid #a8d5c8; border-radius: 4px; padding: .2rem .55rem; }
+
+  .course-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: .45rem; }
+  .course-pill { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: .65rem 1rem; display: flex; align-items: flex-start; gap: .5rem; transition: border-color .15s; }
+  .course-pill:hover { border-color: var(--teal); }
+  .course-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--teal); margin-top: 5px; flex-shrink: 0; }
+  .course-info { flex: 1; }
+  .course-name-text { font-size: 13px; color: var(--text); line-height: 1.4; }
+  .course-meta-text { font-family: var(--mono); font-size: 10px; color: var(--muted); margin-top: 2px; }
+  .course-pill.special { border-color: #b8d4e8; background: #f0f6fb; }
+  .course-pill.special .course-dot { background: var(--navy2); }
+
+  .ponen-list { display: flex; flex-direction: column; gap: .5rem; }
+  .ponen-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: .9rem 1.25rem; display: grid; grid-template-columns: 60px 1fr; gap: 1rem; align-items: start; }
+  .ponen-year { font-family: var(--mono); font-size: 11px; color: var(--muted); padding-top: 2px; }
+  .ponen-title { font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.4; }
+  .ponen-where { font-size: 12px; color: var(--muted); margin-top: 3px; }
+  .ponen-footer { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; margin-top: .4rem; }
+  .ponen-type { font-family: var(--mono); font-size: 9px; padding: .15rem .5rem; border-radius: 20px; }
+  .ponen-type.ponencia { background: var(--teal-light); color: var(--teal); }
+  .ponen-type.congreso { background: var(--amber-light); color: var(--amber); }
+  .ponen-type.charla { background: #edf0fb; color: #3a4db0; }
+  .ponen-type.estancia { background: #f4ede8; color: #7a4a2a; }
+  .ponen-constancia { font-family: var(--mono); font-size: 10px; color: var(--teal); text-decoration: none; background: var(--teal-light); border: 1px solid #a8d5c8; border-radius: 4px; padding: .15rem .5rem; }
+
+  .gallery-intro { font-size: 13px; color: var(--muted); margin-bottom: 1.25rem; }
+  .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .75rem; }
+  .gallery-slot { aspect-ratio: 4/3; border-radius: 8px; border: 1px dashed var(--border); background: var(--bg2); display: flex; align-items: center; justify-content: center; }
+  .gallery-slot span { font-family: var(--mono); font-size: 10px; color: var(--border); }
+
+  .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: .75rem; }
+  .cert-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 1rem 1.25rem; display: flex; align-items: flex-start; gap: .85rem; }
+  .cert-icon { width: 34px; height: 34px; border-radius: 8px; flex-shrink: 0; display: flex; align-items: center; justify-content: center; font-size: 14px; }
+  .cert-icon.lang { background: var(--amber-light); }
+  .cert-icon.doc { background: #edf0fb; }
+  .cert-icon.org { background: #f0e8f4; }
+  .cert-title { font-size: 13px; font-weight: 500; color: var(--text); line-height: 1.35; }
+  .cert-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .cert-pdf { font-family: var(--mono); font-size: 10px; color: var(--teal); margin-top: .4rem; text-decoration: none; display: inline-block; }
+  .cert-pdf:hover { text-decoration: underline; }
+
+  .tip-box { margin-top: 1rem; padding: .85rem 1rem; background: var(--bg2); border-radius: 8px; font-size: 12px; color: var(--muted); font-family: var(--mono); }
+
+  footer { text-align: center; padding: .9rem; font-family: var(--mono); font-size: 10px; color: var(--border); letter-spacing: 1.5px; background: #0a1c33; margin-top: 2rem; }
+
+  @media (max-width: 680px) {
+    .hero { grid-template-columns: 1fr; gap: 1.5rem; padding: 2rem 1.25rem 1.5rem; }
+    .page { padding: 0 1rem 3rem; }
+    nav { padding: .75rem 1rem; }
+    .nav-links { gap: .75rem; }
+    .about-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: repeat(2,1fr); }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <span class="nav-logo">E.A.R.O · DOCENTE</span>
+  <ul class="nav-links">
+    <li><a href="#perfil">perfil</a></li>
+    <li><a href="#formacion">formación</a></li>
+    <li><a href="#cursos">cursos</a></li>
+    <li><a href="#ponencias">ponencias</a></li>
+    <li><a href="#codigos">códigos</a></li>
+    <li><a href="#galeria">galería</a></li>
+    <li><a href="#constancias">constancias</a></li>
+  </ul>
+</nav>
+
+<div class="hero-wrap">
+  <div class="hero">
+    <img src="img/foto-perfil.png" class="avatar" style="object-fit:cover;" alt="Emmanuel Rodríguez Ortiz">
+    <div>
+      <div class="hero-sup">PORTAFOLIO DOCENTE · MORELIA, MICHOACÁN</div>
+      <h1 class="hero-name">Emmanuel Alfredo<br><em>Rodríguez Ortiz</em></h1>
+      <p class="hero-desc">Licenciado en Ciencias Físico Matemáticas y Maestro en Ciencias en Ingeniería Física. Docente universitario con experiencia en matemáticas, estadística, métodos cuantitativos y programación.</p>
+      <div class="hero-badges">
+        <span class="badge active">● 2022 – 2026 · Docente activo</span>
+        <span class="badge">Lic. Ciencias Físico Matemáticas</span>
+        <span class="badge">Mtro. Ingeniería Física</span>
+        <span class="badge">TOEFL B2</span>
+      </div>
+      <div class="hero-contact" id="contacto">
+        <div>
+          <div class="hc-label">CONTACTO</div>
+          <div class="hc-email">Emmanuel_R.O@hotmail.com</div>
+          <div class="hc-email">emmanuel.a.rodr@gmail.com</div>
+          <div class="hc-phone">+52 443 528 2691 · Morelia, Michoacán</div>
+        </div>
+        <div class="hero-contact-btns">
+          <a class="cbtn" href="https://github.com/ManeAX35" target="_blank">GitHub ↗</a>
+          <a class="cbtn" href="https://www.linkedin.com/in/emmanuel-alfredo-rodríguez-ortiz-663576262" target="_blank">LinkedIn ↗</a>
+          <a class="cbtn" href="constancias/CV_Emmanuel_Rodriguez.pdf" target="_blank">Descargar CV ↗</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- PERFIL -->
+  <details class="collapsible" open id="perfil">
+    <summary><span>perfil profesional</span><span class="arrow">›</span></summary>
+    <div class="collapsible-body">
+      <div class="about-grid">
+        <div class="card">
+          <h3>biografía</h3>
+          <p>Nacido en Morelia, Michoacán (2000). Egresado de la UMSNH con Licenciatura en Ciencias Físico Matemáticas y Maestría en Ciencias en Ingeniería Física. Desde 2022 me he dedicado a la docencia universitaria en matemáticas, estadística y programación, impartiendo clases en la Universidad LaSalle Morelia, la UMSNH y la Preparatoria Interamericana. Combino rigor académico con una vocación real por enseñar: explicar bien es, para mí, la habilidad más importante de un profesional.</p>
+        </div>
+        <div class="card" style="display:flex;flex-direction:column;gap:1rem">
+          <div class="stats-row">
+            <div class="stat"><div class="stat-n">4+</div><div class="stat-l">años<br>docente</div></div>
+            <div class="stat"><div class="stat-n">40+</div><div class="stat-l">cursos<br>impartidos</div></div>
+            <div class="stat"><div class="stat-n">3</div><div class="stat-l">instituciones<br>educativas</div></div>
+          </div>
+          <div>
+            <h3 style="font-family:var(--mono);font-size:10px;letter-spacing:2px;color:var(--teal);margin-bottom:.5rem;text-transform:uppercase">Herramientas y lenguajes</h3>
+            <div class="skills-grid">
+              <span class="skill-tag hl">Python</span><span class="skill-tag hl">R</span><span class="skill-tag hl">SQL</span><span class="skill-tag hl">Power BI</span>
+              <span class="skill-tag">Mathematica</span><span class="skill-tag">Maple</span><span class="skill-tag">Java</span><span class="skill-tag">C/C++</span>
+              <span class="skill-tag">Fortran</span><span class="skill-tag">Google Classroom</span><span class="skill-tag">Google Sites</span><span class="skill-tag">MS Teams</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <!-- FORMACIÓN -->
+  <details class="collapsible" id="formacion">
+    <summary><span>formación académica</span><span class="arrow">›</span></summary>
+    <div class="collapsible-body">
+      <div class="edu-list">
+        <div class="edu-card">
+          <div>
+            <div class="edu-title">Maestría en Ciencias en Ingeniería Física</div>
+            <div class="edu-sub">Universidad Michoacana de San Nicolás de Hidalgo · Morelia, Mich.</div>
+            <div class="edu-links">
+              <a class="edu-link" href="constancias/titulos-cedulas/titulo-maestria.pdf" target="_blank">↗ Ver título</a>
+              <a class="edu-link" href="constancias/titulos-cedulas/cedula-maestria-15085091.pdf" target="_blank">↗ Ver cédula · 15085091</a>
+            </div>
+          </div>
+          <span class="edu-badge msc">Maestría</span>
+        </div>
+        <div class="edu-card">
+          <div>
+            <div class="edu-title">Licenciatura en Ciencias Físico Matemáticas</div>
+            <div class="edu-sub">Universidad Michoacana de San Nicolás de Hidalgo · Morelia, Mich.</div>
+            <div class="edu-links">
+              <a class="edu-link" href="constancias/titulos-cedulas/titulo-licenciatura.pdf" target="_blank">↗ Ver título</a>
+              <a class="edu-link" href="constancias/titulos-cedulas/cedula-licenciatura-13338361.pdf" target="_blank">↗ Ver cédula · 13338361</a>
+            </div>
+          </div>
+          <span class="edu-badge lic">Licenciatura</span>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <!-- CURSOS -->
+  <details class="collapsible" id="cursos">
+    <summary><span>cursos y talleres impartidos</span><span class="arrow">›</span></summary>
+    <div class="collapsible-body">
+
+      <details class="sub-collapsible" open>
+        <summary><span>UNIVERSIDAD LASALLE MORELIA · Escuela de Negocios Internacionales</span><span class="arrow">›</span></summary>
+        <div class="sub-body">
+          <div class="period-block">
+            <div class="period-label">2023 – 2023</div>
+            <div class="course-grid">
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Cálculo Integral en Varias Variables</div><div class="course-meta-text">Actuaría · 4° semestre</div></div></div>
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Estadística Multivariada</div><div class="course-meta-text">Actuaría · 6° semestre</div></div></div>
+            </div>
+          </div>
+          <div class="period-block">
+            <div class="period-label">2023 – 2024</div>
+            <div class="course-grid">
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Cálculo Diferencial en Varias Variables</div><div class="course-meta-text">Actuaría · 3° semestre</div></div></div>
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Métodos Numéricos</div><div class="course-meta-text">Ingeniería Económica · 3° semestre</div></div></div>
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Cálculo Diferencial</div><div class="course-meta-text">Actuaría · 1° semestre</div></div></div>
+            </div>
+          </div>
+          <div class="period-block">
+            <div class="period-label">2024 – 2024</div>
+            <div class="course-grid">
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Cálculo Integral en Varias Variables</div><div class="course-meta-text">Actuaría · 4° semestre</div></div></div>
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Estadística Inferencial</div><div class="course-meta-text">Ingeniería Económica · 4° semestre</div></div></div>
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Álgebra Lineal</div><div class="course-meta-text">Ingeniería Económica · 2° semestre</div></div></div>
+            </div>
+          </div>
+          <div class="period-block">
+            <div class="period-label">2024 – 2025</div>
+            <div class="course-grid">
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Cálculo Diferencial</div><div class="course-meta-text">Actuaría · 1° semestre</div></div></div>
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Cálculo Diferencial en Varias Variables</div><div class="course-meta-text">Actuaría · 3° semestre</div></div></div>
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Procesos Estocásticos</div><div class="course-meta-text">Ingeniería Económica · 5° semestre</div></div></div>
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Métodos Numéricos</div><div class="course-meta-text">Ingeniería Económica · 3° semestre</div></div></div>
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Simulación Estocástica</div><div class="course-meta-text">Actuaría · 7° semestre</div></div></div>
+            </div>
+          </div>
+          <div class="period-block">
+            <div class="period-label">2025 – 2025</div>
+            <div class="course-grid">
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Álgebra Superior</div><div class="course-meta-text">Actuaría · 2° semestre</div></div></div>
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Cálculo Integral en Varias Variables</div><div class="course-meta-text">Actuaría · 4° semestre</div></div></div>
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Estadística Inferencial</div><div class="course-meta-text">Ingeniería Económica · 4° semestre</div></div></div>
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Inteligencia Artificial Aplicada a los Negocios</div><div class="course-meta-text">Ingeniería Económica · 6° semestre</div></div></div>
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Curso Especial: Preparación Examen Final</div><div class="course-meta-text">Actuaría · 8° semestre</div></div></div>
+            </div>
+          </div>
+          <div class="period-block">
+            <div class="period-label">2025 – 2026</div>
+            <div class="course-grid">
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Cálculo Diferencial en Varias Variables</div><div class="course-meta-text">Actuaría · 3° semestre</div></div></div>
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Métodos Numéricos</div><div class="course-meta-text">Ingeniería Económica · 3° semestre</div></div></div>
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Matemáticas para los Negocios</div><div class="course-meta-text">Comercio y Negocios Internacionales · 1° semestre</div></div></div>
+              <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Taller de Programación en Python</div><div class="course-meta-text">Curso especial</div></div></div>
+            </div>
+          </div>
+          <div class="period-block">
+            <div class="period-label">2026 – 2026</div>
+            <div class="course-grid">
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Cálculo Integral en Varias Variables</div><div class="course-meta-text">Actuaría · 4° semestre</div></div></div>
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Instrumentación Estadística para los Negocios</div><div class="course-meta-text">Mercadotecnia · 2° semestre</div></div></div>
+              <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Taller de Programación en Python</div><div class="course-meta-text">Curso especial</div></div></div>
+              <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Taller de Análisis de Datos con Python</div><div class="course-meta-text">Curso especial</div></div></div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <details class="sub-collapsible">
+        <summary><span>UNIVERSIDAD MICHOACANA DE SAN NICOLÁS DE HIDALGO</span><span class="arrow">›</span></summary>
+        <div class="sub-body">
+          <div class="period-block">
+            <div class="period-label">Junio – Agosto 2023 · Curso Propedéutico</div>
+            <div class="course-grid">
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Precálculo</div><div class="course-meta-text">FCFM · Ciencias Físico Matemáticas y Actuaría · 4 sem, 5h/día</div></div></div>
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Geometría</div><div class="course-meta-text">FCFM · Ciencias Físico Matemáticas y Actuaría</div></div></div>
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Álgebra Básica</div><div class="course-meta-text">FCFM · Ciencias Físico Matemáticas y Actuaría</div></div></div>
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Lógica</div><div class="course-meta-text">FCFM · Ciencias Físico Matemáticas y Actuaría</div></div></div>
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Unidad Estudiantil</div><div class="course-meta-text">FCFM · Ciencias Físico Matemáticas y Actuaría</div></div></div>
+            </div>
+          </div>
+          <div class="period-block">
+            <div class="period-label">Mayo – Agosto 2024 · Curso Propedéutico</div>
+            <div class="course-grid">
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Precálculo</div><div class="course-meta-text">FCFM · Ciencias Físico Matemáticas · 4 sem, 5h/día</div></div></div>
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Geometría</div><div class="course-meta-text">FCFM · Ciencias Físico Matemáticas</div></div></div>
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Álgebra Básica</div><div class="course-meta-text">FCFM · Ciencias Físico Matemáticas</div></div></div>
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Lógica</div><div class="course-meta-text">FCFM · Ciencias Físico Matemáticas</div></div></div>
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Unidad Estudiantil</div><div class="course-meta-text">FCFM · Ciencias Físico Matemáticas</div></div></div>
+            </div>
+            <div class="period-note">Constancia disponible · 50 hrs curriculares · organización, diseño de programa y exámenes</div>
+          </div>
+          <div class="period-block">
+            <div class="period-label">Julio – Agosto 2025 · Curso Propedéutico</div>
+            <div class="course-grid">
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Precálculo</div><div class="course-meta-text">FCFM · EEI · Ciencias Físico Matemáticas y Actuaría · 4 sem, 5h/día</div></div></div>
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Geometría</div><div class="course-meta-text">FCFM · EEI · Ciencias Físico Matemáticas y Actuaría</div></div></div>
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Álgebra Básica</div><div class="course-meta-text">FCFM · EEI · Ciencias Físico Matemáticas y Actuaría</div></div></div>
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Lógica</div><div class="course-meta-text">FCFM · EEI · Ciencias Físico Matemáticas y Actuaría</div></div></div>
+            </div>
+          </div>
+          <div class="period-block">
+            <div class="period-label">2025 – 2026 · Semestre regular</div>
+            <div class="course-grid">
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Métodos Numéricos</div><div class="course-meta-text">EEI · Actuaría · 4° semestre</div></div></div>
+            </div>
+          </div>
+        </div>
+      </details>
+
+      <details class="sub-collapsible">
+        <summary><span>PREPARATORIA INTERAMERICANA</span><span class="arrow">›</span></summary>
+        <div class="sub-body">
+          <div class="period-block">
+            <div class="period-label">Mayo – Agosto 2023</div>
+            <div class="course-grid">
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Física 1</div><div class="course-meta-text">4° cuatrimestre</div></div></div>
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Inglés 3</div><div class="course-meta-text">3° cuatrimestre</div></div></div>
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Inglés 4</div><div class="course-meta-text">4° cuatrimestre</div></div></div>
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Matemáticas 3</div><div class="course-meta-text">3° cuatrimestre</div></div></div>
+              <div class="course-pill"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Matemáticas 4</div><div class="course-meta-text">4° cuatrimestre</div></div></div>
+            </div>
+          </div>
+        </div>
+      </details>
+    </div>
+  </details>
+
+  <!-- PONENCIAS -->
+  <details class="collapsible" id="ponencias">
+    <summary><span>ponencias y congresos</span><span class="arrow">›</span></summary>
+    <div class="collapsible-body">
+      <div class="ponen-list">
+        <div class="ponen-card"><div class="ponen-year">2025</div><div><div class="ponen-title">Conferencista en Morelia Lab 2025</div><div class="ponen-where">Colegio de Morelia · H. Ayuntamiento de Morelia · octubre 2025</div><div class="ponen-footer"><span class="ponen-type ponencia">ponencia</span><a class="ponen-constancia" href="constancias/Morelia_lab.pdf" target="_blank">↓ constancia</a></div></div></div>
+        <div class="ponen-card"><div class="ponen-year">2024</div><div><div class="ponen-title">Impacto de la Inteligencia Artificial en Diversos Sectores y su Futuro</div><div class="ponen-where">XXIV Encuentro Universitario Internacional de Actualización Docente · UMSNH, Morelia</div><div class="ponen-footer"><span class="ponen-type ponencia">ponencia</span></div></div></div>
+        <div class="ponen-card"><div class="ponen-year">2024</div><div><div class="ponen-title">Cómo enseñar matemáticas me ha enseñado matemáticas</div><div class="ponen-where">Escuela de Matemáticas de Occidente EMO 2024 · CUCEI, Universidad de Guadalajara · agosto 2024</div><div class="ponen-footer"><span class="ponen-type charla">charla</span><a class="ponen-constancia" href="constancias/EMO_2024_CEMMHEM_Emmanuel_Alfredo_Rodríguez_Ortiz.pdf" target="_blank">↓ constancia</a></div></div></div>
+        <div class="ponen-card"><div class="ponen-year">2023</div><div><div class="ponen-title">Generación de señales de electrocardiograma a partir de un modelo de osciladores no lineales</div><div class="ponen-where">4° CICITEC 2023 · Tijuana, Baja California · agosto 2023</div><div class="ponen-footer"><span class="ponen-type congreso">congreso</span></div></div></div>
+        <div class="ponen-card"><div class="ponen-year">2023</div><div><div class="ponen-title">Conteo de ciclos límite en la ecuación de Liénard</div><div class="ponen-where">LXVI Congreso Nacional de Física · Morelia, Michoacán · octubre 2023</div><div class="ponen-footer"><span class="ponen-type congreso">congreso</span></div></div></div>
+        <div class="ponen-card"><div class="ponen-year">2023</div><div><div class="ponen-title">Ciclos límite en la ecuación de Liénard con funciones trigonométricas</div><div class="ponen-where">EDIESCA 2023 · Universidad Autónoma de Nuevo León · septiembre 2023</div><div class="ponen-footer"><span class="ponen-type congreso">congreso</span><a class="ponen-constancia" href="constancias/EDIESCA_2023_PS_11_2.pdf" target="_blank">↓ constancia</a></div></div></div>
+        <div class="ponen-card"><div class="ponen-year">2022</div><div><div class="ponen-title">Termodinámica de un agujero negro con campo escalar regular</div><div class="ponen-where">LXV Congreso Nacional de Física · Zacatecas · octubre 2022</div><div class="ponen-footer"><span class="ponen-type congreso">congreso</span></div></div></div>
+        <div class="ponen-card"><div class="ponen-year">2022</div><div><div class="ponen-title">Agujero negro con campo escalar — Estancia de investigación</div><div class="ponen-where">10° Verano Nicolaíta de Investigación · UMSNH · junio–julio 2022</div><div class="ponen-footer"><span class="ponen-type estancia">estancia</span><a class="ponen-constancia" href="constancias/CONST_ESTANCIA_PDFMailer.pdf" target="_blank">↓ constancia</a></div></div></div>
+      </div>
+    </div>
+  </details>
+
+  <!-- CÓDIGOS -->
+  <details class="collapsible" id="codigos">
+    <summary><span>códigos de clase</span><span class="arrow">›</span></summary>
+    <div class="collapsible-body">
+      <p style="font-size:13px;color:var(--muted);margin-bottom:1.25rem;line-height:1.6;">Notebooks de Jupyter (.ipynb) utilizados en clase, organizados por materia. Disponibles en el repositorio para visualizar o descargar.</p>
+
+      <details class="sub-collapsible" open>
+        <summary><span>MÉTODOS NUMÉRICOS · Ingeniería Económica · LaSalle Morelia</span><span class="arrow">›</span></summary>
+        <div class="sub-body">
+          <div class="course-grid">
+            <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Método de Bisección</div><div class="course-meta-text"><a href="codigos/Metodos numericos, ingenieria LaSalle/Metodo de biseccion.ipynb" style="color:var(--teal);text-decoration:none;">↗ ver notebook</a></div></div></div>
+            <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Método de Bisección 2025</div><div class="course-meta-text"><a href="codigos/Metodos numericos, ingenieria LaSalle/Metodo de la biseccion 2025.ipynb" style="color:var(--teal);text-decoration:none;">↗ ver notebook</a></div></div></div>
+            <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Punto Fijo</div><div class="course-meta-text"><a href="codigos/Metodos numericos, ingenieria LaSalle/Punto fijo.ipynb" style="color:var(--teal);text-decoration:none;">↗ ver notebook</a></div></div></div>
+            <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Iteración</div><div class="course-meta-text"><a href="codigos/Metodos numericos, ingenieria LaSalle/iteracion.ipynb" style="color:var(--teal);text-decoration:none;">↗ ver notebook</a></div></div></div>
+            <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Derivadas — hacia adelante</div><div class="course-meta-text"><a href="codigos/Metodos numericos, ingenieria LaSalle/Derivada hacia adelante 26_08_2025.ipynb" style="color:var(--teal);text-decoration:none;">↗ ver notebook</a></div></div></div>
+            <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Derivadas — general</div><div class="course-meta-text"><a href="codigos/Metodos numericos, ingenieria LaSalle/derivada.ipynb" style="color:var(--teal);text-decoration:none;">↗ ver notebook</a></div></div></div>
+            <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Integrales: suma sup., inferior y promedio</div><div class="course-meta-text"><a href="codigos/Metodos numericos, ingenieria LaSalle/integrales suma sup, inferior y promedio.ipynb" style="color:var(--teal);text-decoration:none;">↗ ver notebook</a></div></div></div>
+            <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Cuadratura Gaussiana</div><div class="course-meta-text"><a href="codigos/Metodos numericos, ingenieria LaSalle/cuadratura gaussiana.ipynb" style="color:var(--teal);text-decoration:none;">↗ ver notebook</a></div></div></div>
+            <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Matrices</div><div class="course-meta-text"><a href="codigos/Metodos numericos, ingenieria LaSalle/matrices.ipynb" style="color:var(--teal);text-decoration:none;">↗ ver notebook</a></div></div></div>
+            <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Euler hacia adelante</div><div class="course-meta-text"><a href="codigos/Metodos numericos, ingenieria LaSalle/Euler hacia adelante 19_09_2025.ipynb" style="color:var(--teal);text-decoration:none;">↗ ver notebook</a></div></div></div>
+            <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Runge-Kutta 4 — Grado Superior</div><div class="course-meta-text"><a href="codigos/Metodos numericos, ingenieria LaSalle/RUNGEKUTTA4GRADOSUPERIOR.ipynb" style="color:var(--teal);text-decoration:none;">↗ ver notebook</a></div></div></div>
+            <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Runge-Kutta 4 — Sistemas de ecuaciones</div><div class="course-meta-text"><a href="codigos/Metodos numericos, ingenieria LaSalle/RUNGE KUTTA ORDEN 4 SISTEMAS DE ECUACIONES.ipynb" style="color:var(--teal);text-decoration:none;">↗ ver notebook</a></div></div></div>
+          </div>
+        </div>
+      </details>
+
+      <details class="sub-collapsible">
+        <summary><span>SIMULACIÓN ESTOCÁSTICA · Actuaría · LaSalle Morelia</span><span class="arrow">›</span></summary>
+        <div class="sub-body">
+          <div class="course-grid">
+            <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Generador LCG</div><div class="course-meta-text"><a href="codigos/Simulacion estocastica/LCG_S.ipynb" style="color:var(--teal);text-decoration:none;">↗ ver notebook</a></div></div></div>
+            <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Mi RNG (generador propio)</div><div class="course-meta-text"><a href="codigos/Simulacion estocastica/MI_RNG.ipynb" style="color:var(--teal);text-decoration:none;">↗ ver notebook</a></div></div></div>
+            <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Método de la Caja</div><div class="course-meta-text"><a href="codigos/Simulacion estocastica/Metodo de la caja.ipynb" style="color:var(--teal);text-decoration:none;">↗ ver notebook</a></div></div></div>
+            <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Aceptación-Rechazo</div><div class="course-meta-text"><a href="codigos/Simulacion estocastica/ACEPTACION RECHAZO.ipynb" style="color:var(--teal);text-decoration:none;">↗ ver notebook</a></div></div></div>
+            <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Montecarlo para calcular π</div><div class="course-meta-text"><a href="codigos/Simulacion estocastica/Montecarlo para calcular pi.ipynb" style="color:var(--teal);text-decoration:none;">↗ ver notebook</a></div></div></div>
+          </div>
+        </div>
+      </details>
+
+      <details class="sub-collapsible">
+        <summary><span>INTELIGENCIA ARTIFICIAL APLICADA · Ingeniería Económica · LaSalle Morelia</span><span class="arrow">›</span></summary>
+        <div class="sub-body">
+          <div class="course-grid">
+            <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Redes Neuronales (completo)</div><div class="course-meta-text"><a href="codigos/Inteligencia artificial, ingenieria economica, lasalle/RedesNeuronalesSinClim.ipynb" style="color:var(--teal);text-decoration:none;">↗ ver notebook</a></div></div></div>
+            <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Red Neuronal (ejemplo)</div><div class="course-meta-text"><a href="codigos/Inteligencia artificial, ingenieria economica, lasalle/Red neuronal.ipynb" style="color:var(--teal);text-decoration:none;">↗ ver notebook</a></div></div></div>
+            <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Lógica Difusa</div><div class="course-meta-text"><a href="codigos/Inteligencia artificial, ingenieria economica, lasalle/LOGICA DIFUSA.ipynb" style="color:var(--teal);text-decoration:none;">↗ ver notebook</a></div></div></div>
+            <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Código Genético</div><div class="course-meta-text"><a href="codigos/Inteligencia artificial, ingenieria economica, lasalle/Codigo genetico.ipynb" style="color:var(--teal);text-decoration:none;">↗ ver notebook</a></div></div></div>
+            <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">La Ruina del Apostador</div><div class="course-meta-text"><a href="codigos/Inteligencia artificial, ingenieria economica, lasalle/La ruina del apostador.ipynb" style="color:var(--teal);text-decoration:none;">↗ ver notebook</a></div></div></div>
+            <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Problema de la Suma</div><div class="course-meta-text"><a href="codigos/Inteligencia artificial, ingenieria economica, lasalle/Porblema de la suma.ipynb" style="color:var(--teal);text-decoration:none;">↗ ver notebook</a></div></div></div>
+            <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Método Newton-Raphson</div><div class="course-meta-text"><a href="codigos/Inteligencia artificial, ingenieria economica, lasalle/Metodo Newton Rhapson.ipynb" style="color:var(--teal);text-decoration:none;">↗ ver notebook</a></div></div></div>
+          </div>
+        </div>
+      </details>
+
+      <details class="sub-collapsible">
+        <summary><span>TALLERES DE PYTHON · LaSalle Morelia</span><span class="arrow">›</span></summary>
+        <div class="sub-body">
+          <div class="course-grid">
+            <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Python Básico — Condicionales</div><div class="course-meta-text"><a href="codigos/Python basico/Condicionales Python.ipynb" style="color:var(--teal);text-decoration:none;">↗ ver notebook</a></div></div></div>
+            <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Bubble Sort</div><div class="course-meta-text"><a href="codigos/Python basico/Bubble sort.ipynb" style="color:var(--teal);text-decoration:none;">↗ ver notebook</a></div></div></div>
+            <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Código General (referencia)</div><div class="course-meta-text"><a href="codigos/Python basico/Codigo GENERAL" style="color:var(--teal);text-decoration:none;">↗ ver archivo</a></div></div></div>
+            <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Sesión 20 ago 2025</div><div class="course-meta-text"><a href="codigos/Python basico/20_08_2025 python.ipynb" style="color:var(--teal);text-decoration:none;">↗ ver notebook</a></div></div></div>
+            <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Sesión 02 mar 2026</div><div class="course-meta-text"><a href="codigos/Python basico/02032026.ipynb" style="color:var(--teal);text-decoration:none;">↗ ver notebook</a></div></div></div>
+          </div>
+        </div>
+      </details>
+
+      <details class="sub-collapsible">
+        <summary><span>ANÁLISIS DE DATOS CON PYTHON · LaSalle Morelia</span><span class="arrow">›</span></summary>
+        <div class="sub-body">
+          <div class="course-grid">
+            <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">PANDAS — Análisis de datos</div><div class="course-meta-text"><a href="codigos/Analisis de datos/PANDAS.ipynb" style="color:var(--teal);text-decoration:none;">↗ ver notebook</a></div></div></div>
+            <div class="course-pill special"><div class="course-dot"></div><div class="course-info"><div class="course-name-text">Semana 1 — Python avanzado</div><div class="course-meta-text"><a href="codigos/Analisis de datos/Semana 1 Python avanzado.ipynb" style="color:var(--teal);text-decoration:none;">↗ ver notebook</a></div></div></div>
+          </div>
+        </div>
+      </details>
+
+      <div class="tip-box">💡 Los notebooks se visualizan directamente en GitHub. También puedes abrirlos en Google Colab desde el botón que aparece al inicio de cada archivo.</div>
+    </div>
+  </details>
+
+  <!-- GALERÍA -->
+  <details class="collapsible" id="galeria">
+    <summary><span>galería</span><span class="arrow">›</span></summary>
+    <div class="collapsible-body">
+      <p class="gallery-intro">Momentos en clase, congresos y actividades académicas.</p>
+      <div class="gallery-grid">
+        <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border);position:relative">
+          <img src="img/galeria/01-congreso-lienard-poster.jpg" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
+          <div style="padding:.5rem .75rem;background:var(--card);font-size:11px;color:var(--muted);font-family:var(--mono)">Congreso EDIESCA 2023 · Liénard</div>
+        </div>
+        <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border)">
+          <img src="img/galeria/02-congreso-lienard-explicando.jpg" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
+          <div style="padding:.5rem .75rem;background:var(--card);font-size:11px;color:var(--muted);font-family:var(--mono)">Presentación de cartel · EDIESCA 2023</div>
+        </div>
+        <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border)">
+          <img src="img/galeria/03-congreso-lienard-individual.jpg" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
+          <div style="padding:.5rem .75rem;background:var(--card);font-size:11px;color:var(--muted);font-family:var(--mono)">Cartel · Ciclos límite Liénard</div>
+        </div>
+        <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border)">
+          <img src="img/galeria/04-congreso-lienard-equipo.jpg" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
+          <div style="padding:.5rem .75rem;background:var(--card);font-size:11px;color:var(--muted);font-family:var(--mono)">Equipo · Congreso Nacional de Física 2023</div>
+        </div>
+        <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border)">
+          <img src="img/galeria/05-congreso-actuaria-2024.jpg" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
+          <div style="padding:.5rem .75rem;background:var(--card);font-size:11px;color:var(--muted);font-family:var(--mono)">Congreso AxM · Actuaría 2024</div>
+        </div>
+        <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border)">
+          <img src="img/galeria/06-clase-presentacion.jpg" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
+          <div style="padding:.5rem .75rem;background:var(--card);font-size:11px;color:var(--muted);font-family:var(--mono)">Clase — Ciclos límite</div>
+        </div>
+        <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border)">
+          <img src="img/galeria/07-alumnos-auditorio.jpg" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
+          <div style="padding:.5rem .75rem;background:var(--card);font-size:11px;color:var(--muted);font-family:var(--mono)">Curso propedéutico · Auditorio UMSNH</div>
+        </div>
+        <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border)">
+          <img src="img/galeria/08-alumnos-propedeutico.jpg" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
+          <div style="padding:.5rem .75rem;background:var(--card);font-size:11px;color:var(--muted);font-family:var(--mono)">Alumnos propedéutico 2024</div>
+        </div>
+      </div>
+    </div>
+  </details>
+
+  <!-- CONSTANCIAS -->
+  <details class="collapsible" id="constancias">
+    <summary><span>constancias y certificaciones</span><span class="arrow">›</span></summary>
+    <div class="collapsible-body">
+      <div class="cert-grid">
+        <div class="cert-card"><div class="cert-icon lang">🌐</div><div><div class="cert-title">TOEFL ITP · Inglés B2 (Silver)</div><div class="cert-sub">560 pts · ETS / UMSNH · septiembre 2022</div><a class="cert-pdf" href="constancias/TOEFL_EARO.pdf" target="_blank">↓ Ver constancia PDF</a></div></div>
+        <div class="cert-card"><div class="cert-icon doc">📐</div><div><div class="cert-title">Seminario Mathematica como herramienta de modelado</div><div class="cert-sub">FCFM · UMSNH · marzo–abril 2023 · 40 hrs</div><a class="cert-pdf" href="constancias/Mathematica_como_herramienta_de_modelado.pdf" target="_blank">↓ Ver constancia PDF</a></div></div>
+        <div class="cert-card"><div class="cert-icon doc">🎓</div><div><div class="cert-title">Integridad académica en mi labor docente</div><div class="cert-sub">Tec de Monterrey · UDEM · LaSalle Morelia · enero 2024 · 8 hrs</div><a class="cert-pdf" href="constancias/integridad_academica_29-01-24.pdf" target="_blank">↓ Ver constancia PDF</a></div></div>
+        <div class="cert-card"><div class="cert-icon doc">📋</div><div><div class="cert-title">Taller de Planeación Didáctica</div><div class="cert-sub">Universidad LaSalle Morelia · enero 2025</div><a class="cert-pdf" href="constancias/Constancia_Emmanuel_Alfredo_Rodríguez_Ortiz-2PLANEACION.pdf" target="_blank">↓ Ver constancia PDF</a></div></div>
+        <div class="cert-card"><div class="cert-icon doc">📋</div><div><div class="cert-title">Evaluación del Aprendizaje</div><div class="cert-sub">Universidad LaSalle Morelia · enero 2025</div><a class="cert-pdf" href="constancias/Constancia_Emmanuel_Alfredo_Rodríguez_Ortiz-3EVALUACION.pdf" target="_blank">↓ Ver constancia PDF</a></div></div>
+        <div class="cert-card"><div class="cert-icon doc">📊</div><div><div class="cert-title">Capacitación INEGI</div><div class="cert-sub">Universidad LaSalle Morelia · enero 2025</div><a class="cert-pdf" href="constancias/Constancia_Emmanuel_Alfredo_Rodríguez_Ortiz-6INEGI.pdf" target="_blank">↓ Ver constancia PDF</a></div></div>
+        <div class="cert-card"><div class="cert-icon org">🏫</div><div><div class="cert-title">Taller Jugando con la Física</div><div class="cert-sub">Jardín de Niños Moctezuma · SEE Michoacán · abril 2023 · 10 hrs</div><a class="cert-pdf" href="constancias/Adobe_Scan_02_ago_2023.pdf" target="_blank">↓ Ver constancia PDF</a></div></div>
+        <div class="cert-card"><div class="cert-icon doc">🔬</div><div><div class="cert-title">Staff — Workshop Docencia e Investigación en Física</div><div class="cert-sub">IFM · FCFM · UMSNH · diciembre 2022 · Folio WO2022007</div><a class="cert-pdf" href="constancias/emma.pdf" target="_blank">↓ Ver constancia PDF</a></div></div>
+        <div class="cert-card"><div class="cert-icon doc">📚</div><div><div class="cert-title">Programa de Asesorías FCFM · semestre 24/24</div><div class="cert-sub">FCFM · UMSNH · agosto 2024</div><a class="cert-pdf" href="constancias/aaesor_FISMAT_24-24.pdf" target="_blank">↓ Ver constancia PDF</a></div></div>
+        <div class="cert-card"><div class="cert-icon doc">🏅</div><div><div class="cert-title">Impartición Cursos Propedéuticos 2024 · 50 hrs</div><div class="cert-sub">FCFM · UMSNH · Ciencias Físico Matemáticas · septiembre 2024</div><a class="cert-pdf" href="constancias/Propedeutico_24-25_fismat.pdf" target="_blank">↓ Ver constancia PDF</a></div></div>
+        <div class="cert-card"><div class="cert-icon org">🤝</div><div><div class="cert-title">Socio activo AMECHII</div><div class="cert-sub">Asociación Mexicana de Ciencias, Humanidades, Ingeniería e Innovación · 2025–2026</div><a class="cert-pdf" href="constancias/__NombreT___Organizador.pdf" target="_blank">↓ Ver constancia PDF</a></div></div>
+        <div class="cert-card"><div class="cert-icon org">🎤</div><div><div class="cert-title">Conferencista Morelia Lab 2025</div><div class="cert-sub">Colegio de Morelia · H. Ayuntamiento de Morelia · octubre 2025</div><a class="cert-pdf" href="constancias/Morelia_lab.pdf" target="_blank">↓ Ver constancia PDF</a></div></div>
+      </div>
+    </div>
+  </details>
+
+</div>
+
+<footer>EMMANUEL ALFREDO RODRÍGUEZ ORTIZ · PORTAFOLIO DOCENTE 2022–2026 · MORELIA, MICHOACÁN</footer>
+
+</body>
+</html>
