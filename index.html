@@ -143,7 +143,6 @@
 
   footer { text-align: center; padding: .9rem; font-family: var(--mono); font-size: 10px; color: var(--border); letter-spacing: 1.5px; background: #0a1c33; margin-top: 2rem; }
 
-  /* ── RESPONSIVE ── */
   @media (max-width: 900px) {
     .page { padding: 0 1.5rem 3rem; }
     .hero { padding: 2.5rem 1.5rem 2rem; gap: 2rem; }
@@ -151,13 +150,10 @@
   }
 
   @media (max-width: 680px) {
-    /* Nav */
     nav { padding: .7rem 1rem; flex-wrap: wrap; gap: .5rem; }
     .nav-logo { font-size: 11px; }
     .nav-links { gap: .6rem; }
     .nav-links a { font-size: 10px; letter-spacing: 1px; }
-
-    /* Hero */
     .hero { grid-template-columns: 1fr; gap: 1.25rem; padding: 1.75rem 1.1rem 1.5rem; }
     .avatar { width: 75px; height: 75px; font-size: 1.5rem; }
     .hero-name { font-size: 1.8rem; }
@@ -170,41 +166,25 @@
     .hc-phone { font-size: 11px; }
     .hero-contact-btns { flex-wrap: wrap; }
     .cbtn { font-size: 10px; padding: .35rem .75rem; }
-
-    /* Page */
     .page { padding: 0 .85rem 3rem; }
-
-    /* Collapsibles */
     .collapsible { margin-top: 1rem; }
     .collapsible > summary { padding: .85rem 1rem; font-size: 9px; letter-spacing: 2px; }
     .collapsible-body { padding: 1rem; }
     .sub-collapsible > summary { padding: .65rem .85rem; font-size: 10px; letter-spacing: 1px; }
     .sub-body { padding: .75rem; }
-
-    /* About */
     .about-grid { grid-template-columns: 1fr; }
     .stats-row { grid-template-columns: repeat(3, 1fr); gap: .5rem; }
     .stat-n { font-size: 1.5rem; }
     .stat-l { font-size: 9px; }
-
-    /* Education */
     .edu-card { grid-template-columns: 1fr; gap: .5rem; }
     .edu-badge { display: inline-block; margin-top: .25rem; }
-
-    /* Courses */
     .course-grid { grid-template-columns: 1fr; }
     .period-label { font-size: 9px; }
-
-    /* Ponencias */
     .ponen-card { grid-template-columns: 45px 1fr; gap: .6rem; }
     .ponen-year { font-size: 10px; }
     .ponen-title { font-size: 12px; }
     .ponen-where { font-size: 11px; }
-
-    /* Gallery */
     .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: .5rem; }
-
-    /* Certs */
     .cert-grid { grid-template-columns: 1fr; }
   }
 
@@ -235,7 +215,7 @@
 
 <div class="hero-wrap">
   <div class="hero">
-    <div class="avatar">EA</div>
+    <img src="img/foto-perfil.png" class="avatar" style="object-fit:cover;" alt="Emmanuel Rodríguez Ortiz">
     <div>
       <div class="hero-sup">PORTAFOLIO DOCENTE · MORELIA, MICHOACÁN</div>
       <h1 class="hero-name">Emmanuel Alfredo<br><em>Rodríguez Ortiz</em></h1>
@@ -255,7 +235,7 @@
         </div>
         <div class="hero-contact-btns">
           <a class="cbtn" href="https://github.com/ManeAX35" target="_blank">GitHub ↗</a>
-          <a class="cbtn" href="https://linkedin.com/in/TU_USUARIO_LINKEDIN" target="_blank">LinkedIn ↗</a>
+          <a class="cbtn" href="https://www.linkedin.com/in/emmanuel-alfredo-rodríguez-ortiz-663576262" target="_blank">LinkedIn ↗</a>
           <a class="cbtn" href="constancias/CV_Emmanuel_Rodriguez.pdf" target="_blank">Descargar CV ↗</a>
         </div>
       </div>
@@ -303,8 +283,8 @@
             <div class="edu-title">Maestría en Ciencias en Ingeniería Física</div>
             <div class="edu-sub">Universidad Michoacana de San Nicolás de Hidalgo · Morelia, Mich.</div>
             <div class="edu-links">
-              <a class="edu-link" href="LINK_TITULO_MAESTRIA" target="_blank">↗ Ver título</a>
-              <a class="edu-link" href="LINK_CEDULA_MAESTRIA" target="_blank">↗ Ver cédula · 15085091</a>
+              <a class="edu-link" href="constancias/titulos-cedulas/titulo-maestria.pdf" target="_blank">↗ Ver título</a>
+              <a class="edu-link" href="constancias/titulos-cedulas/cedula-maestria-15085091.pdf" target="_blank">↗ Ver cédula · 15085091</a>
             </div>
           </div>
           <span class="edu-badge msc">Maestría</span>
@@ -314,8 +294,8 @@
             <div class="edu-title">Licenciatura en Ciencias Físico Matemáticas</div>
             <div class="edu-sub">Universidad Michoacana de San Nicolás de Hidalgo · Morelia, Mich.</div>
             <div class="edu-links">
-              <a class="edu-link" href="LINK_TITULO_LICENCIATURA" target="_blank">↗ Ver título</a>
-              <a class="edu-link" href="LINK_CEDULA_LICENCIATURA" target="_blank">↗ Ver cédula · 13338361</a>
+              <a class="edu-link" href="constancias/titulos-cedulas/titulo-licenciatura.pdf" target="_blank">↗ Ver título</a>
+              <a class="edu-link" href="constancias/titulos-cedulas/cedula-licenciatura-13338361.pdf" target="_blank">↗ Ver cédula · 13338361</a>
             </div>
           </div>
           <span class="edu-badge lic">Licenciatura</span>
@@ -558,14 +538,40 @@
   <details class="collapsible" id="galeria">
     <summary><span>galería</span><span class="arrow">›</span></summary>
     <div class="collapsible-body">
-      <p class="gallery-intro">Momentos en clase, congresos y actividades académicas. Agrega tus fotos en la carpeta <code>img/galeria/</code> y actualiza los src.</p>
+      <p class="gallery-intro">Momentos en clase, congresos y actividades académicas.</p>
       <div class="gallery-grid">
-        <div class="gallery-slot"><span>img 01</span></div>
-        <div class="gallery-slot"><span>img 02</span></div>
-        <div class="gallery-slot"><span>img 03</span></div>
-        <div class="gallery-slot"><span>img 04</span></div>
-        <div class="gallery-slot"><span>img 05</span></div>
-        <div class="gallery-slot"><span>img 06</span></div>
+        <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border);position:relative">
+          <img src="img/galeria/01-congreso-lienard-poster.jpg" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
+          <div style="padding:.5rem .75rem;background:var(--card);font-size:11px;color:var(--muted);font-family:var(--mono)">Congreso EDIESCA 2023 · Liénard</div>
+        </div>
+        <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border)">
+          <img src="img/galeria/02-congreso-lienard-explicando.jpg" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
+          <div style="padding:.5rem .75rem;background:var(--card);font-size:11px;color:var(--muted);font-family:var(--mono)">Presentación de cartel · EDIESCA 2023</div>
+        </div>
+        <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border)">
+          <img src="img/galeria/03-congreso-lienard-individual.jpg" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
+          <div style="padding:.5rem .75rem;background:var(--card);font-size:11px;color:var(--muted);font-family:var(--mono)">Cartel · Ciclos límite Liénard</div>
+        </div>
+        <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border)">
+          <img src="img/galeria/04-congreso-lienard-equipo.jpg" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
+          <div style="padding:.5rem .75rem;background:var(--card);font-size:11px;color:var(--muted);font-family:var(--mono)">Equipo · Congreso Nacional de Física 2023</div>
+        </div>
+        <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border)">
+          <img src="img/galeria/05-congreso-actuaria-2024.jpg" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
+          <div style="padding:.5rem .75rem;background:var(--card);font-size:11px;color:var(--muted);font-family:var(--mono)">Congreso AxM · Actuaría 2024</div>
+        </div>
+        <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border)">
+          <img src="img/galeria/06-clase-presentacion.jpg" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
+          <div style="padding:.5rem .75rem;background:var(--card);font-size:11px;color:var(--muted);font-family:var(--mono)">Clase — Ciclos límite</div>
+        </div>
+        <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border)">
+          <img src="img/galeria/07-alumnos-auditorio.jpg" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
+          <div style="padding:.5rem .75rem;background:var(--card);font-size:11px;color:var(--muted);font-family:var(--mono)">Curso propedéutico · Auditorio UMSNH</div>
+        </div>
+        <div style="border-radius:8px;overflow:hidden;border:1px solid var(--border)">
+          <img src="img/galeria/08-alumnos-propedeutico.jpg" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block;">
+          <div style="padding:.5rem .75rem;background:var(--card);font-size:11px;color:var(--muted);font-family:var(--mono)">Alumnos propedéutico 2024</div>
+        </div>
       </div>
     </div>
   </details>
