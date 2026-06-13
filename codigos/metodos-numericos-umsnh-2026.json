@@ -1,0 +1,20 @@
+{
+  "materia": "MÉTODOS NUMÉRICOS · Actuaría · EEI UMSNH",
+  "periodo": "2026 – 2026",
+  "tipo": "colab",
+  "codigos": [
+    { "nombre": "Eliminación Gaussiana", "url": "https://colab.research.google.com/drive/1SC3fdPNYQ6Bb5SsHx5D9KYhvI9FJG1g_" },
+    { "nombre": "Factorización LU y Forward Substitution", "url": "https://colab.research.google.com/drive/1Bqv_kel0aQrvIRaot47PWFasYHFShYeq" },
+    { "nombre": "Inversa de Matriz", "url": "https://colab.research.google.com/drive/1kPF7ePPY0mI9cwyAuili3pFexp-sKnh_" },
+    { "nombre": "Diferenciación Numérica", "url": "https://colab.research.google.com/drive/1DlxXUR2zYnHNzjewh8IHhgkG1FwruAQj" },
+    { "nombre": "Euler", "url": "https://colab.research.google.com/drive/1aOfMsdAeBSqdeObqo525sq3-rnOJJsOS" },
+    { "nombre": "Runge-Kutta Orden 4", "url": "https://colab.research.google.com/drive/1uU443CaGAsz7ak0cvWxkuSwOgxEpHibC" },
+    { "nombre": "Integración Numérica", "url": "https://colab.research.google.com/drive/1-yUa8bfJo1K6Lv2SqWyeigj362PafKio" },
+    { "nombre": "Cuadratura Adaptativa", "url": "https://colab.research.google.com/drive/1cNjJ515FFOeM8MW0B5XdcD3gwww7pxAz" },
+    { "nombre": "Montecarlo para calcular π", "url": "https://colab.research.google.com/drive/1HQ8ber9Lp97Jf1upvNYFR2moZ-TOGLpC" },
+    { "nombre": "Generadores Pseudoaleatorios", "url": "https://colab.research.google.com/drive/1GADe0-3nVNLORw9OdjF_FahHUbnrOnRY" },
+    { "nombre": "Integración de Montecarlo", "url": "https://colab.research.google.com/drive/1ANWojwvimeiHOWra3X-l5Hm0b1jl3onV" },
+    { "nombre": "Caminata Aleatoria", "url": "https://colab.research.google.com/drive/1U44hsEorunxAHH1MR3wdtTCbF-2qHUWC" },
+    { "nombre": "Ejemplo con Acciones Reales", "url": "https://colab.research.google.com/drive/1LUReIjgoaz_e68nVBXkt1Q-Q9CyLgjX0" }
+  ]
+}
